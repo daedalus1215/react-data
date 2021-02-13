@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+* main thrust in libraries: `axios bootstrap chart.js formik react-bootsrap react-chartjs-2 react-router-dom yup`
+
 ## Available Scripts
 
 In the project directory, you can run:
