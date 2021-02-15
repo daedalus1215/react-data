@@ -80,6 +80,7 @@ function HistoricRatesPage() {
                                         type="text"
                                         name="startDate"
                                         placeholder="YYYY-MM-DD"
+                                        value={values.startDate || ""}
                                         onChange={handleChange}
                                         isInvalid={touched.startDate && errors.startDate}
                                     />
@@ -93,6 +94,7 @@ function HistoricRatesPage() {
                                         type="text"
                                         name="endDate"
                                         placeholder="YYYY-MM-DD"
+                                        value={values.endDate || ""}
                                         onChange={handleChange}
                                         isInvalid={touched.endDate && errors.endDate}
                                     />

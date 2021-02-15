@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -22,6 +22,7 @@ const schema = yup.object({
     fromCurrency: yup.string().required("From currency is required"),
     toCurrency: yup.string().required("To currency is required"),
 });
+
 function HistoricRatesBetweenCurrenciesPage() {
     const [data, setData] = useState({});
     const handleSubmit = async evt => {
@@ -53,7 +54,13 @@ function HistoricRatesBetweenCurrenciesPage() {
     return (
         <div className="historic-rates-page">
             <h1 className="center">Historic Rates</h1>
-            <Formik validationSchema={schema} onSubmit={handleSubmit}>
+            <Formik validationSchema={schema} onSubmit={handleSubmit}
+                initialValues={{
+                    startDate: "2020-05-05",
+                    endDate: "2020-05-05",
+                    fromCurrency: "",
+                    toCurrency: "",
+                }}>
                 {({
                     handleSubmit,
                     handleChange,
