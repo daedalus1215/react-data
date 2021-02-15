@@ -4,7 +4,7 @@ import HomePage from './HomePage';
 import { createBrowserHistory as createHistory } from 'history';
 import TopBar from './TopBar';
 import HistoricRatesBetweenCurrenciesPage from './HistoricRatesBetweenCurrenciesPage';
-import HistoricRatePage from './HistoricRatePage';
+import HistoricRatePage from './HistoricRatesPage';
 import './App.css';
 
 const history = createHistory();
