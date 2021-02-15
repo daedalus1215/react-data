@@ -4,13 +4,13 @@ import HomePage from './HomePage';
 import { createBrowserHistory as createHistory } from 'history';
 import TopBar from './TopBar';
 import HistoricRatesBetweenCurrenciesPage from './HistoricRatesBetweenCurrenciesPage';
-import HistoricRatePage from './HistoricRatesPage';
+import HistoricRatesPage from './HistoricRatesPage';
 import './App.css';
 
 const history = createHistory();
 
 const App = () => {
-  windoew.Chart.defaults.global.defaultFontFamily = `
+  window.Chart.defaults.global.defaultFontFamily = `
   -apple-system, BlinkMacSystemFont, "Segoe  UI", 
   "Roboto", "Oxygen", "Ubuntu", "Cantarell", 
   "Fira Sans", "Droid Sans", "Helvetica Neue", 
@@ -21,7 +21,7 @@ const App = () => {
       <Router history={history}>
         <TopBar />
         <Route path="/" exact component={HomePage} />
-        <Route path="/historicrates" exact component={HistoricRatePage} />
+        <Route path="/historicrates" exact component={HistoricRatesPage} />
         <Route path="/historicrates2currencies" exact component={HistoricRatesBetweenCurrenciesPage} />
 
       </Router>
