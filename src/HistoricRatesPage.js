@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import * as yup from "yup";
 import "./HistoricRatesPage.css";
-import { getHistoricRates } from "./requests";
+import { getHistoricRates, getHistoricStuff } from "./requests";
 import { Line } from "react-chartjs-2";
 import { CURRENCIES } from "./exports";
 const schema = yup.object({
@@ -24,9 +24,31 @@ const schema = yup.object({
 
 function HistoricRatesPage() {
     const [data, setData] = React.useState({});
+    const [hData, setHData] = useState([]);
+
+    useEffect(() => {
+        getHistoricStuff(setHData);
+    }, []);
+
+    useEffect(() => {
+        
+
+        const lineGraphData = {
+            labels: hData.map(timeUnit => timeUnit.timestamp),
+            datasets: [
+                {
+                    data: hData.map(timeUnit => timeUnit.rate),
+                    label: 'Bitcoin',
+                    borderColor: "#FFD700",
+                    fill: false,
+                },
+            ],
+        };
+        setData(lineGraphData);
+    }, [hData]);
 
     const handleSubmit = async evt => {
-        console.log('handleSubmit', evt)
+
         const isValid = await schema.validate(evt);
         if (!isValid) {
             return;
@@ -36,7 +58,8 @@ function HistoricRatesPage() {
             end_at: evt.endDate,
         };
         const response = await getHistoricRates(params);
-        console.log('HistoricRatesPage, ', response)
+
+        console.log('EVEN currency:', evt.currency);
         const rates = response.data.rates;
         const lineGraphData = {
             labels: Object.keys(rates),
@@ -51,6 +74,8 @@ function HistoricRatesPage() {
         };
         setData(lineGraphData);
     };
+
+    console.log('data:', hData);
 
     return (
         <div className="historic-rates-page">
